@@ -110,7 +110,7 @@ could let any path opt in; see [`philosophy.md`](philosophy.md).
 | Bundle | Vite | Markdown imported as raw strings via `?raw`. |
 | Type-check | `tsc --noEmit` (part of `npm run build`) | Strict mode; no `any`. |
 | Lint | ESLint (`npm run lint`) | React + TS rules. |
-| Deploy | GitHub Actions ([`deploy-pages.yml`](../.github/workflows/deploy-pages.yml)) | Pushes to `gh-pages` on every `main` push. |
+| Deploy | GitHub Actions ([`deploy-pages.yml`](../.github/workflows/deploy-pages.yml)) | Builds `dist/` and deploys it via the GitHub Pages artifact flow on every `main` push. |
 
 Always run `npm run build` before declaring a content change complete.
 

@@ -23,9 +23,14 @@ export default defineConfig({
     target: 'esnext', // Support top-level await
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-scroll-area', '@radix-ui/react-collapsible'],
+        // Vite 8 (Rolldown) only accepts the function form of manualChunks.
+        manualChunks(id) {
+          if (/[\\/]node_modules[\\/](react|react-dom|react-router-dom|react-router|scheduler)[\\/]/.test(id)) {
+            return 'vendor-react'
+          }
+          if (/[\\/]node_modules[\\/]@radix-ui[\\/]react-(dialog|scroll-area|collapsible)[\\/]/.test(id)) {
+            return 'vendor-ui'
+          }
         }
       }
     }
